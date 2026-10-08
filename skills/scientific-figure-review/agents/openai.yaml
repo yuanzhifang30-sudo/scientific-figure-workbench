@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Figure Review"
+  short_description: "Inspect figure versions, evidence checks and review handoffs"
+  default_prompt: "Use $scientific-figure-review to inspect these figure submissions and draft version-specific review notes."

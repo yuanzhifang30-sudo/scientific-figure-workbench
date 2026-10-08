@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>科研图件验收工作台</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="sidebar"><div class="mark">FW</div><div class="brand">FIGURE<br>WORKBENCH</div><p class="side-hint">科研图件验收工作台</p><nav><button class="nav-button active" id="board-nav">图件任务</button><button class="nav-button" id="history-nav">操作留痕</button><button class="nav-button" id="packages-nav">冻结图包</button></nav><div class="side-section"><label>制图者 / 在途名额</label><div id="owners"></div></div><div class="side-footer">本机工作台<br>自动检查 · 人工确认 · 固定交付</div></aside>
+<main><header><div><div class="eyebrow">RESEARCH / REVIEW / HANDOFF</div><h1>科研图件验收工作台</h1><p>让每张图的来源、版本和验收决定对应起来。</p></div><div class="header-actions"><button class="button light" id="refresh">刷新</button><button class="button primary" id="new-task">＋ 新建任务</button></div></header>
+<section class="stats" aria-label="任务概况"><div class="stat"><label>图件任务</label><strong id="total">—</strong><small>当前工作台全部任务</small></div><div class="stat"><label>人工验收通过</label><strong id="accepted">—</strong><small>仅统计当前提交版本</small></div><div class="stat"><label>自动检查阻塞</label><strong id="blocked">—</strong><small>需先修复证据文件</small></div><div class="stat"><label>已冻结图包</label><strong id="release-count">—</strong><small>固定字节与哈希清单</small></div></section>
+<section class="toolbar"><div class="search"><input id="search" aria-label="搜索图件" placeholder="搜索标题、制图者或任务编号"></div><select id="owner-filter" aria-label="筛选制图者"><option value="">全部制图者</option></select><div class="revision" id="revision"></div><button class="button primary" id="freeze">冻结已验收图包</button></section>
+<div class="workflow-note"><span>验收流程</span>任务准备 → 制图提交 → 自动检查 → 人工确认 → 图包冻结<span class="note-end">新版本重新验收</span></div>
+<section id="board" class="board" aria-label="图件看板"></section>
+<footer>自动检查不代替数据语义、科学结论或视觉质量的人工判断。演示使用匿名自造数据。</footer></main>
+<dialog id="detail"><div class="dialog-head"><div><div class="eyebrow">FIGURE DETAIL</div><h2 id="detail-title"></h2></div><button class="close" aria-label="关闭详情" data-close="detail">×</button></div><div id="detail-body"></div></dialog>
+<dialog id="create"><div class="dialog-head"><h2>新建图件任务</h2><button class="close" aria-label="关闭新建任务" data-close="create">×</button></div><form id="create-form" class="form"><label>图件标题<input name="title" required maxlength="120" placeholder="例如：不同场景下的延迟对比"></label><label>制图者代号<input name="owner" required maxlength="80" placeholder="例如：author-a"></label><label>验收要求<textarea name="brief" required maxlength="2000" placeholder="预期用例、单位、统计口径、版本来源、图注要求"></textarea></label><button class="button primary" type="submit">创建任务</button></form></dialog>
+<dialog id="list-dialog"><div class="dialog-head"><h2 id="list-title"></h2><button class="close" aria-label="关闭列表" data-close="list-dialog">×</button></div><div id="list-body"></div></dialog>
+<div id="toast" role="status" hidden></div>
+</body></html>

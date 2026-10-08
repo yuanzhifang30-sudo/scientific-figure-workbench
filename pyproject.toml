@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scientific-figure-workbench"
+version = "0.1.0"
+description = "A local workbench for version-bound scientific figure review and immutable handoff packages."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "yuanzhifang30-sudo"}]
+dependencies = ["Pillow>=10.1"]
+
+[project.scripts]
+fwb = "figure_workbench.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yuanzhifang30-sudo/scientific-figure-workbench"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+figure_workbench = ["web/*.html", "web/*.css", "web/*.js", "web/*.svg"]

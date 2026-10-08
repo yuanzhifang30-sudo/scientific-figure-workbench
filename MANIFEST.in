@@ -1,0 +1,4 @@
+include README.en.md uv.lock
+recursive-include src/figure_workbench/web *.html *.css *.js *.svg
+recursive-include skills *.md *.yaml
+recursive-include docs *.md *.png
