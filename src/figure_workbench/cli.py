@@ -10,6 +10,10 @@ from .store import Store, WorkflowError
 
 
 def main(argv=None):
+    # Pipe output must remain readable in English Windows locales as well.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(prog="fwb", description="科研图件验收工作台 / local scientific figure review")
     parser.add_argument("--version", action="version", version=__version__)
     commands = parser.add_subparsers(dest="command", required=True)

@@ -1,8 +1,11 @@
 import base64
 import io
 import json
+import os
 from pathlib import Path
 import tempfile
+import subprocess
+import sys
 import threading
 import unittest
 from urllib.error import HTTPError
@@ -216,6 +219,13 @@ class WorkflowTests(unittest.TestCase):
 
 
 class HTTPTests(unittest.TestCase):
+    def test_cli_unicode_output_survives_english_windows_pipe_encoding(self):
+        with tempfile.TemporaryDirectory() as root:
+            result = subprocess.run([sys.executable, "-m", "figure_workbench", "demo", "--data-dir", root],
+                                    env={**os.environ, "PYTHONIOENCODING": "cp1252"}, capture_output=True, timeout=30)
+            self.assertEqual(result.returncode, 0, result.stderr.decode("utf-8", errors="replace"))
+            self.assertIn("已创建6张", result.stdout.decode("utf-8"))
+
     def test_browser_assets_api_and_cross_origin_guards(self):
         with tempfile.TemporaryDirectory() as root:
             server = make_server(Store(root), 0)
